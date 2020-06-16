@@ -1,0 +1,12 @@
+D:\Temp\EDSL_Prototype\EDSL_Prototype\bin\Debug\EDSL_Prototype.exe.config
+D:\Temp\EDSL_Prototype\EDSL_Prototype\bin\Debug\EDSL_Prototype.exe
+D:\Temp\EDSL_Prototype\EDSL_Prototype\bin\Debug\EDSL_Prototype.pdb
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.EDSL_Results.resources
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.Properties.Resources.resources
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.EDSL_System.resources
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.csproj.GenerateResource.cache
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.csproj.CoreCompileInputs.cache
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.exe
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.pdb
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.csprojAssemblyReference.cache
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.EDSL_SelectDates.resources
