@@ -1,4 +1,5 @@
-﻿using EDSL_Prototype.Models;
+﻿using EDSL_Prototype.Handlers;
+using EDSL_Prototype.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,17 +24,29 @@ namespace EDSL_Prototype
 
         private void btn_ViewResults_Click(object sender, EventArgs e)
         {
-
+            int rNo = Convert.ToInt32(cbo_SelectRound.Text);
             lbl_Results.Text = "Results";
-            List<Results> results = new List<Results>();
-            results.Add(new Results(1, "Paok", 0, "Liverpool", 0));
-            results.Add(new Results(2, "Manchester UTD", 0, "Real Madrid", 0));
-            results.Add(new Results(3, "Barcalona", 0, "Socceroos", 0));
-            results.Add(new Results(4, "Juventus", 0, "Athelitico Madrid", 0));
-            results.Add(new Results(5, "AC Milan", 0, "Tottenham Spurs", 0));
-            results.Add(new Results(5, "Olympiacos", 0, "Arsenal", 0));
+            List<Round> rounds = new List<Round>();
+            rounds = ResultsHandler.GetRoundsList();
+            //results.Add(new Results(1, "Paok", 0, "Liverpool", 0));
+            //results.Add(new Results(2, "Manchester UTD", 0, "Real Madrid", 0));
+            //results.Add(new Results(3, "Barcalona", 0, "Socceroos", 0));
+            //results.Add(new Results(4, "Juventus", 0, "Athelitico Madrid", 0));
+            //results.Add(new Results(5, "AC Milan", 0, "Tottenham Spurs", 0));
+            //results.Add(new Results(6, "Olympiacos", 0, "Arsenal", 0));
 
-            dataGridView1.DataSource = results;
+            dataGridView1.DataSource = rounds[rNo].GameList.Select((g, index) =>
+            new
+            {
+                Column0 = $"Game {g.GameNo}",
+                Column1 = $"{g.HomeTeam}",
+                Column2 = $" {g.HomeGoals}",
+                Column3 = $" {g.AwayTeam}",
+                Column4 = $" {g.AwayGoals}"
+
+            }).ToList();
+
+
             dataGridView1.Columns[0].HeaderText = "Game";
             dataGridView1.Columns[0].ReadOnly = true;
             dataGridView1.Columns[1].HeaderText = "Away Team";
@@ -82,5 +95,6 @@ namespace EDSL_Prototype
             this.Dispose();
             this.systemGUI.Dispose();
         }
+
     }
 }

@@ -10,3 +10,4 @@ D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.exe
 D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.pdb
 D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.csprojAssemblyReference.cache
 D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.EDSL_SelectDates.resources
+D:\Temp\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.GUI.EDSL_Draw.resources

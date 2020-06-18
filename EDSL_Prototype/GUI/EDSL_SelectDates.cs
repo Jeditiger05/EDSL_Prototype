@@ -2,13 +2,7 @@
 using EDSL_Prototype.Handlers;
 using EDSL_Prototype.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EDSL_Prototype
@@ -25,8 +19,13 @@ namespace EDSL_Prototype
             this.systemGUI = systemGUI;
             this.seasonName = seasonName;
             InitializeComponent();
-
             RefreshGrid();
+        }
+
+        public void RefreshGrid()
+        {
+            season = DAFunctions.ReadSeason(seasonName);
+            SeasonHandler.FillGridd(grid, season);
 
             grid.Columns[1].Width = 200;
             grid.Controls.Add(dtp);
@@ -35,13 +34,6 @@ namespace EDSL_Prototype
             dtp.TextChanged += new EventHandler(dtp_TextChange);
             grid.Columns[2].Selected = false;
 
-        }
-
-        public void RefreshGrid()
-        {
-            season = DAFunctions.ReadSeason(seasonName);
-
-            SeasonHandler.FillGridd(grid, season);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -76,17 +68,28 @@ namespace EDSL_Prototype
         private void btn_Ok_Click(object sender, EventArgs e)
         {
             this.Dispose();
-            this.systemGUI.Show();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (grid.CurrentCell.ColumnIndex != 2 && grid.CurrentCell.ColumnIndex != 3)
+            if (grid.CurrentCell.ColumnIndex == 1)
             {
                 grid.CurrentCell.Value = dtp.Text.ToString();
                 season.SeasonDates[grid.CurrentCell.RowIndex] = dtp.Value;
                 dtp.Value = DateTime.Now;
             }
+        }
+
+        private void btn_AddRound_Click(object sender, EventArgs e)
+        {
+            season.SeasonDates.Add(DateTime.Now);
+            RefreshGrid();
+        }
+
+        private void btn_RemoveRound_Click(object sender, EventArgs e)
+        {
+            season.SeasonDates.RemoveAt(grid.CurrentCell.RowIndex);
+            RefreshGrid();
         }
     }
 }

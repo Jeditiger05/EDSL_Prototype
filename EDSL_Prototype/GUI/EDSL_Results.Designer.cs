@@ -325,6 +325,7 @@
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "EDSL_Results";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EDSL_Results";
