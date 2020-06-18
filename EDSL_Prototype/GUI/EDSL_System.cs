@@ -71,9 +71,10 @@ namespace EDSL_Prototype
         private void btn_CreateDraw_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(SeasonHandler.CreateDivisionDraw("A Division")[0].GameList[0].AwayTeam);
+            
+            SeasonHandler.CreateDivisionDraw(cbo_Division.Text);
             EDSL_Draw drawGUI = new EDSL_Draw();
             drawGUI.Show();
-            SeasonHandler.CreateDivisionDraw(cbo_Division.Text);
         }
 
         private void btn_ViewDraw_Click(object sender, EventArgs e)

@@ -1,23 +1,25 @@
 ﻿using EDSL_Prototype.DAL;
 using EDSL_Prototype.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EDSL_Prototype.Handlers
 {
     class Fixtures
     {
-        public static void CallCode(string divName)
+        public static void GetGames(string divName)
         {
             Division division = DAFunctions.ReadDivision(divName);
             List<string> teams = DAFunctions.GetDivisionTeams(division.DivisionID);
             List<Round> rounds = new List<Round>();
             List<Game> fixtures = CalculateFixtures(teams);
+
+
+
             //var teams = new string[] { "A", "B", "C", "D" };
             //List<Fixture> fixtures = CalculateFixtures(teams);
+            DAFunctions.fixtures = fixtures;
         }
 
         public static List<Game> CalculateFixtures(List<string> teams)
@@ -26,13 +28,11 @@ namespace EDSL_Prototype.Handlers
             List<Game> fixtures = new List<Game>();
             for (int i = 0; i < teams.Count; i++)
             {
-                int gameNum = 1;
                 for (int j = 0; j < teams.Count; j++)
                 {
                     if (teams[i] != teams[j])
                     {
-                        fixtures.Add(new Game(gameNum, teams[j], teams[j], 0, 0));
-                        gameNum += 1;
+                        fixtures.Add(new Game(j, teams[i], teams[j], 0, 0));
                     }
                 }
             }

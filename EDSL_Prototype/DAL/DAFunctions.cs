@@ -13,6 +13,7 @@ namespace EDSL_Prototype.DAL
         private static List<Division> divisions = new List<Division>();
         private static List<Team> teams = new List<Team>();
         public static List<List<Round>> allRoundsList = new List<List<Round>>();
+        public static List<Game> fixtures = new List<Game>();
         public static Season ReadSeason(string season)
         {
             return seasons.Find(x => x.SeasonName == season);

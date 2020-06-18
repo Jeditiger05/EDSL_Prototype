@@ -19,7 +19,11 @@ namespace EDSL_Prototype.GUI
         {
             InitializeComponent();
             List<Round> rounds = SeasonHandler.CreateDivisionDraw("A Division");
-            
+            //List<Game> rounds = DAFunctions.fixtures;
+
+            //grid_Draw.DataSource = rounds.Select(g => new
+            //{ RoundNo = g.GameNo, g.HomeTeam, g.HomeGoals, g.AwayTeam, g.AwayGoals }).OrderBy(g => g.RoundNo).ToList();
+
             grid_Draw.DataSource = rounds.Select((r, index) =>
             new
             {
