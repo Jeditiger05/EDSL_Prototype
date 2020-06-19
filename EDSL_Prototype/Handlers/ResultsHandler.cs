@@ -12,7 +12,7 @@ namespace EDSL_Prototype.Handlers
     {
         public static List<Round> GetRoundsList()
         {
-            return DAFunctions.allRoundsList[0];
+            return DAFunctions.draw;
             
         }
     }

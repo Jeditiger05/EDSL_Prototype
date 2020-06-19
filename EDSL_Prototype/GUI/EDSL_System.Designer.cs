@@ -344,6 +344,7 @@
             this.txt_SeasonName.Name = "txt_SeasonName";
             this.txt_SeasonName.Size = new System.Drawing.Size(200, 22);
             this.txt_SeasonName.TabIndex = 15;
+            this.txt_SeasonName.TextChanged += new System.EventHandler(this.txt_SeasonName_TextChanged);
             // 
             // label8
             // 
@@ -391,6 +392,11 @@
             // 
             this.num_Rounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_Rounds.Location = new System.Drawing.Point(162, 130);
+            this.num_Rounds.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             this.num_Rounds.Name = "num_Rounds";
             this.num_Rounds.Size = new System.Drawing.Size(55, 22);
             this.num_Rounds.TabIndex = 5;

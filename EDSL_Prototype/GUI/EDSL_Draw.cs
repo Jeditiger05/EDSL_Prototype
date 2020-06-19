@@ -15,37 +15,50 @@ namespace EDSL_Prototype.GUI
 {
     public partial class EDSL_Draw : Form
     {
-        public EDSL_Draw()
+        private string divName;
+        public EDSL_Draw(string divName)
         {
+            this.divName = divName;
             InitializeComponent();
-            List<Round> rounds = SeasonHandler.CreateDivisionDraw("A Division");
-            //List<Game> rounds = DAFunctions.fixtures;
+        }
 
-            //grid_Draw.DataSource = rounds.Select(g => new
-            //{ RoundNo = g.GameNo, g.HomeTeam, g.HomeGoals, g.AwayTeam, g.AwayGoals }).OrderBy(g => g.RoundNo).ToList();
+        private void FillGridFixtures()
+        {
+            List<Game> rounds = DAFunctions.fixtures;
+
+            if (rounds.Count == 0)
+                MessageBox.Show("No Fixtures to Display");
+            else
+                grid_Draw.DataSource = rounds.Select((g, index) => new
+                { GameNo = g.GameNo, g.HomeTeam, g.HomeGoals, g.AwayTeam, g.AwayGoals }).ToList();
+        }
+
+        private void FillGrid()
+        {
+            List<Round> rounds = DAFunctions.draw;
 
             grid_Draw.DataSource = rounds.Select((r, index) =>
             new
             {
+                Index = index,
                 Round = $"Round {r.RoundNo} {r.RoundDate.ToShortDateString()}",
                 Game1 = $"{r.GameList[0].HomeTeam} vs {r.GameList[0].AwayTeam}",
                 Game2 = $"{r.GameList[1].HomeTeam} vs {r.GameList[1].AwayTeam}",
                 Game3 = $"{r.GameList[2].HomeTeam} vs {r.GameList[2].AwayTeam}",
                 Game4 = $"{r.GameList[3].HomeTeam} vs {r.GameList[3].AwayTeam}",
                 Game5 = $"{r.GameList[4].HomeTeam} vs {r.GameList[4].AwayTeam}",
-                Game6 = $"{r.GameList[5].HomeTeam} vs {r.GameList[5].AwayTeam}"
             }).ToList();
 
             grid_Draw.RowHeadersVisible = false;
-            grid_Draw.Columns[0].HeaderText = "Round";
-            grid_Draw.Columns[1].HeaderText = "Game 1";
-            grid_Draw.Columns[2].HeaderText = "Game 2";
-            grid_Draw.Columns[3].HeaderText = "Game 3";
-            grid_Draw.Columns[4].HeaderText = "Game 4";
-            grid_Draw.Columns[5].HeaderText = "Game 5";
-            grid_Draw.Columns[6].HeaderText = "Game 6";
 
-            grid_Draw.Columns[0].Width = 140;
+            grid_Draw.Columns[1].HeaderText = "Round";
+            grid_Draw.Columns[2].HeaderText = "Game 1";
+            grid_Draw.Columns[3].HeaderText = "Game 2";
+            grid_Draw.Columns[4].HeaderText = "Game 3";
+            grid_Draw.Columns[5].HeaderText = "Game 4";
+            grid_Draw.Columns[6].HeaderText = "Game 5";
+
+            grid_Draw.Columns[0].Width = 20;
             grid_Draw.Columns[1].Width = 140;
             grid_Draw.Columns[2].Width = 140;
             grid_Draw.Columns[3].Width = 140;
@@ -54,7 +67,18 @@ namespace EDSL_Prototype.GUI
             grid_Draw.Columns[6].Width = 140;
 
             grid_Draw.AutoResizeColumns();
+        }
 
+        private void btn_Fixtures_Click(object sender, EventArgs e)
+        {
+            FillGridFixtures();
+        }
+
+        private void btn_Rounds_Click(object sender, EventArgs e)
+        {
+            lbl_Division.Text = divName;
+            FillGrid();
         }
     }
+
 }

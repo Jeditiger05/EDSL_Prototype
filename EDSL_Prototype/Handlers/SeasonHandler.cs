@@ -42,7 +42,7 @@ namespace EDSL_Prototype.Handlers
                 }
                 else
                 {
-                    season = new Season(seasonName, startDate, Convert.ToInt32(num_Rounds));
+                    season = new Season(DAFunctions.seasons.Count + 1, seasonName, startDate, Convert.ToInt32(num_Rounds));
                     FillGridd(grid_SeasonDates, season);
                     SaveSeasonDates();
                 }
@@ -78,64 +78,9 @@ namespace EDSL_Prototype.Handlers
             DAFunctions.WriteSeason(season);
         }
 
-        //public static void CreateDivisionDraw(string divName)
-        //{
-        //    Fixtures.GetGames(divName);
-        //}
-
-        public static List<Round> CreateDivisionDraw(string divName)
+        public static void CreateDivisionDraw(string seasName, string divName)
         {
-            Division division = DAFunctions.ReadDivision(divName);
-            List<string> teams = DAFunctions.GetDivisionTeams(division.DivisionID);
-            List<Round> rounds = new List<Round>();
-            Round round;
-            Game game;
-
-            //3. Loop through Each Season Round and Add Home and Away Teams
-            for (int i = 0; i < season.SeasonDates.Count; i++)
-            {
-                int gameNum = 1;
-                round = new Round(i + 1, season.SeasonDates[i], 1);
-
-                for (int j = 0; j < teams.Count; j += 2)
-                {
-                    if (!teams[j].Equals(teams[j + 1]))
-                    {
-                        game = new Game(gameNum, teams[j], teams[j + 1], 0, 0);
-                    round.GameList.Add(game);
-                    gameNum += 1;
-                    }
-
-                }
-                teams.Reverse();
-                ShiftTeams(teams);
-                rounds.Add(round);
-            }
-
-            DAFunctions.allRoundsList.Add(rounds);
-            return rounds;
-        }
-
-        public static void ShiftTeams(List<string> teams)
-        {
-            var homeTeam = teams[0];
-            var awayTeam = teams[1];
-            teams.RemoveAt(0);
-            teams.RemoveAt(1);
-            teams.Add(awayTeam);
-            teams.Add(homeTeam);
-            homeTeam = teams[2];
-            awayTeam = teams[3];
-            teams.RemoveAt(2);
-            teams.RemoveAt(3);
-            teams.Add(awayTeam);
-            teams.Add(homeTeam);
-            homeTeam = teams[4];
-            awayTeam = teams[5];
-            teams.RemoveAt(4);
-            teams.RemoveAt(5);
-            teams.Add(awayTeam);
-            teams.Add(homeTeam);
+            Fixtures.GetGames(seasName, divName);
         }
 
         public static void FillGridd(DataGridView grid, Season season)
@@ -146,6 +91,35 @@ namespace EDSL_Prototype.Handlers
             grid.RowHeadersVisible = false;
             grid.AutoResizeColumns();
 
+        }
+
+        public static void SelectDraw(string seasonName)
+        {
+            int drawID = 0;
+
+            switch (seasonName)
+            {
+                case "2017":
+                    drawID = 0;
+                    break;
+                case "2018":
+                    drawID = 1;
+                    break;
+                case "2019":
+                    drawID = 2;
+                    break;
+                case "2020":
+                    drawID = 3;
+                    break;
+                case "2021":
+                    drawID = 4;
+                    break;
+                case "2022":
+                    drawID = 5;
+                    break;
+            }
+
+            DAFunctions.GetDraw(drawID);
         }
     }
 }

@@ -15,6 +15,10 @@ namespace EDSL_Prototype.Models
         public int HomeGoals { get; set; }
         public int AwayGoals { get; set; }
 
+        public Game()
+        {
+        }
+
         public Game(int gameNo, string homeTeam, string awayTeam, int homeGoals, int awayGoals)
         {
             GameNo = gameNo;

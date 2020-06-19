@@ -18,6 +18,7 @@ namespace EDSL_Prototype
             InitializeComponent();
             pnl_System.BringToFront();
             btn_SelectDates.Enabled = false;
+            btn_ViewDraw.Enabled = false;
             DAFunctions.LoadData();
         }
 
@@ -42,13 +43,13 @@ namespace EDSL_Prototype
         {
             SeasonHandler.SaveSeasonDates();
             MessageBox.Show("Season Dates have been Saved");
-            
+
         }
 
         private void btn_ViewSeasonDates_Click(object sender, EventArgs e)
         {
             season = SeasonHandler.ViewSeasonDates(data_Grid_View_SeasonDates, txt_SeasonName.Text);
-            if(season != null)
+            if (season != null)
             {
                 btn_SelectDates.Enabled = true;
             }
@@ -56,10 +57,10 @@ namespace EDSL_Prototype
 
         private void btn_NewDates_Click(object sender, EventArgs e)
         {
-            season = SeasonHandler.GenerateSeasonDates(txt_SeasonName.Text, date_Picker_StartDate.Value, 
+            season = SeasonHandler.GenerateSeasonDates(txt_SeasonName.Text, date_Picker_StartDate.Value,
             data_Grid_View_SeasonDates, Convert.ToInt32(num_Rounds.Value));
-            if(season != null)
-            btn_SelectDates.Enabled = true;
+            if (season != null)
+                btn_SelectDates.Enabled = true;
         }
 
         private void btn_SelectDates_Click(object sender, EventArgs e)
@@ -70,16 +71,21 @@ namespace EDSL_Prototype
 
         private void btn_CreateDraw_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(SeasonHandler.CreateDivisionDraw("A Division")[0].GameList[0].AwayTeam);
-            
-            SeasonHandler.CreateDivisionDraw(cbo_Division.Text);
-            EDSL_Draw drawGUI = new EDSL_Draw();
-            drawGUI.Show();
+            SeasonHandler.CreateDivisionDraw(txt_SeasonName.Text, cbo_Division.Text);
+            MessageBox.Show("Season Draw Created for " + cbo_Division.Text);
         }
 
         private void btn_ViewDraw_Click(object sender, EventArgs e)
         {
-            
+            SeasonHandler.SelectDraw(txt_SeasonName.Text);
+            EDSL_Draw drawGUI = new EDSL_Draw(cbo_Division.Text);
+            drawGUI.Show();
+        }
+
+        private void txt_SeasonName_TextChanged(object sender, EventArgs e)
+        {
+            if (!txt_SeasonName.Text.Equals(""))
+                btn_ViewDraw.Enabled = true;
         }
     }
 }

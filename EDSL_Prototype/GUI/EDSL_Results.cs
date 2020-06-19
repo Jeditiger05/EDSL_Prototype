@@ -28,17 +28,11 @@ namespace EDSL_Prototype
             lbl_Results.Text = "Results";
             List<Round> rounds = new List<Round>();
             rounds = ResultsHandler.GetRoundsList();
-            //results.Add(new Results(1, "Paok", 0, "Liverpool", 0));
-            //results.Add(new Results(2, "Manchester UTD", 0, "Real Madrid", 0));
-            //results.Add(new Results(3, "Barcalona", 0, "Socceroos", 0));
-            //results.Add(new Results(4, "Juventus", 0, "Athelitico Madrid", 0));
-            //results.Add(new Results(5, "AC Milan", 0, "Tottenham Spurs", 0));
-            //results.Add(new Results(6, "Olympiacos", 0, "Arsenal", 0));
 
             dataGridView1.DataSource = rounds[rNo].GameList.Select((g, index) =>
             new
             {
-                Column0 = $"Game {g.GameNo}",
+                Column0 = $"Game {index +1}",
                 Column1 = $"{g.HomeTeam}",
                 Column2 = $" {g.HomeGoals}",
                 Column3 = $" {g.AwayTeam}",

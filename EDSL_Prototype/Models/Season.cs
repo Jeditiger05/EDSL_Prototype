@@ -15,8 +15,9 @@ namespace EDSL_Prototype.Models
         public List<DateTime> SeasonDates { get; set; }
 
         //New Season Constructor
-        public Season(string seasonName, DateTime startDate, int noOfRounds)
+        public Season(int seasonID, string seasonName, DateTime startDate, int noOfRounds)
         {
+            SeasonID = seasonID;
             SeasonName = seasonName;
             StartDate = startDate;
             LeagueName = "EDSL League";
