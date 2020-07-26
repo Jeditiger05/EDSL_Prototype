@@ -14,21 +14,32 @@ namespace EDSL_Prototype.Models
         public string AwayTeam { get; set; }
         public int HomeGoals { get; set; }
         public int AwayGoals { get; set; }
+        public bool Played { get; set; }
 
-        public Game()
+        public Game(bool played)
         {
+            Played = played;
         }
 
-        public Game(int gameNo, string homeTeam, string awayTeam, int homeGoals, int awayGoals)
+
+        public Game(int gameNo, string homeTeam, string awayTeam, bool played)
+        {
+            GameNo = gameNo;
+            HomeTeam = homeTeam;
+            AwayTeam = awayTeam;
+            Played = played;
+        }
+        public Game(int gameNo, string homeTeam, string awayTeam, int homeGoals, int awayGoals, bool played)
         {
             GameNo = gameNo;
             HomeTeam = homeTeam;
             AwayTeam = awayTeam;
             HomeGoals = homeGoals;
             AwayGoals = awayGoals;
+            Played = played;
         }
 
-        public Game(int gameID, int gameNo, string homeTeam, string awayTeam, int homeGoals, int awayGoals)
+        public Game(int gameID, int gameNo, string homeTeam, string awayTeam, int homeGoals, int awayGoals, bool played)
         {
             GameID = gameID;
             GameNo = gameNo;
@@ -36,6 +47,7 @@ namespace EDSL_Prototype.Models
             AwayTeam = awayTeam;
             HomeGoals = homeGoals;
             AwayGoals = awayGoals;
+            Played = played;
         }
     }
 }

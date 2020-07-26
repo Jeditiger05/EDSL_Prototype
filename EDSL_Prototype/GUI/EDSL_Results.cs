@@ -1,4 +1,5 @@
-﻿using EDSL_Prototype.Handlers;
+﻿using EDSL_Prototype.DAL;
+using EDSL_Prototype.Handlers;
 using EDSL_Prototype.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace EDSL_Prototype
     public partial class EDSL_Results : Form
     {
         EDSL_System systemGUI;
+        private static List<Round> rounds = new List<Round>();
+
         public EDSL_Results(EDSL_System systemGUI)
         {
             this.systemGUI = systemGUI;
@@ -22,59 +25,151 @@ namespace EDSL_Prototype
 
         }
 
+        private void GetDraw()
+        {
+            DAFunctions.GetDraw(SeasonHandler.SelectDraw(cbo_SelectSeason.Text));
+
+            rounds = DAFunctions.draw;
+
+        }
+
         private void btn_ViewResults_Click(object sender, EventArgs e)
         {
-            int rNo = Convert.ToInt32(cbo_SelectRound.Text);
-            lbl_Results.Text = "Results";
-            List<Round> rounds = new List<Round>();
-            rounds = ResultsHandler.GetRoundsList();
-
-            dataGridView1.DataSource = rounds[rNo].GameList.Select((g, index) =>
-            new
+            if (cbo_SelectSeason.Text == "" || cbo_SelectDivision.Text == "")
             {
-                Column0 = $"Game {index +1}",
-                Column1 = $"{g.HomeTeam}",
-                Column2 = $" {g.HomeGoals}",
-                Column3 = $" {g.AwayTeam}",
-                Column4 = $" {g.AwayGoals}"
+                MessageBox.Show("Please Select Season & Division to View Results");
+            }
+            else
+            {
+                int rNo = Convert.ToInt32(cbo_SelectRound.Text);
+                lbl_Results.Text = "Results";
 
-            }).ToList();
+                GetDraw();
+                rounds[0].GameList[0].HomeGoals = 2;
+                rounds[0].GameList[0].AwayGoals = 2;
+
+                dataGridView1.DataSource = rounds[rNo].GameList.Select((g, index) =>
+                new
+                {
+                    Column0 = $"Game {index + 1}",
+                    Column1 = $"{g.HomeTeam}",
+                    Column2 = $" {g.HomeGoals}",
+                    Column3 = $" {g.AwayTeam}",
+                    Column4 = $" {g.AwayGoals}"
+
+                }).ToArray();
 
 
-            dataGridView1.Columns[0].HeaderText = "Game";
-            dataGridView1.Columns[0].ReadOnly = true;
-            dataGridView1.Columns[1].HeaderText = "Away Team";
-            dataGridView1.Columns[1].ReadOnly = true;
-            dataGridView1.Columns[2].HeaderText = "Score";
-            dataGridView1.Columns[3].HeaderText = "Home Team";
-            dataGridView1.Columns[3].ReadOnly = true;
-            dataGridView1.Columns[4].HeaderText = "Score";
-            dataGridView1.RowHeadersVisible = false;
+                dataGridView1.Columns[0].HeaderText = "Game";
+                dataGridView1.Columns[1].HeaderText = "Away Team";
+                dataGridView1.Columns[2].HeaderText = "Score";
+                dataGridView1.Columns[3].HeaderText = "Home Team";
+                dataGridView1.Columns[4].HeaderText = "Score";
+                dataGridView1.RowHeadersVisible = false;
+            }
+
+        }
+
+        public static int CalcGoalsFor(string team)
+        {
+            int goals = 0;
+            //adds all goals for when home team
+            for (int i = 0; i < rounds.Count; i++)
+            {
+                for (int j = 0; j < rounds[i].GameList.Count; j++)
+                {
+                    if (rounds[i].GameList[j].HomeTeam.Equals(team))
+                    {
+                        goals += rounds[i].GameList[j].HomeGoals;
+                    }
+                }
+            }
+            //adds all goals for when away team
+            for (int i = 0; i < rounds.Count; i++)
+            {
+                for (int j = 0; j < rounds[i].GameList.Count; j++)
+                {
+                    if (rounds[i].GameList[j].AwayTeam.Equals(team))
+                    {
+                        goals += rounds[i].GameList[j].AwayGoals;
+                    }
+                }
+            }
+
+            return goals;
+        }
+
+        public static int CalcGoalsAgainst(string team)
+        {
+            int goals = 0;
+            //adds all goals against when home team
+            for (int i = 0; i < rounds.Count; i++)
+            {
+                for (int j = 0; j < rounds[i].GameList.Count; j++)
+                {
+                    if (rounds[i].GameList[j].HomeTeam.Equals(team))
+                    {
+                        goals += rounds[i].GameList[j].AwayGoals;
+                    }
+                }
+            }
+            //adds all goals against when away team
+            for (int i = 0; i < rounds.Count; i++)
+            {
+                for (int j = 0; j < rounds[i].GameList.Count; j++)
+                {
+                    if (rounds[i].GameList[j].AwayTeam.Equals(team))
+                    {
+                        goals += rounds[i].GameList[j].HomeGoals;
+                    }
+                }
+            }
+
+            return goals;
+        }
+
+        public static bool GamePlayed(string team)
+        {
+            bool played = false;
+            for (int i = 0; i < rounds.Count; i++)
+            {
+                for (int j = 0; j < rounds[i].GameList.Count; j++)
+                {
+                    if (rounds[i].GameList[j].Played == true)
+                    {
+                        played = true;
+                    }
+                }
+            }
+
+            return played;
         }
 
         private void btn_ViewLadder_Click(object sender, EventArgs e)
         {
-            lbl_Results.Text = "Ladder";
-            List<Ladder> ladder = new List<Ladder>();
-            ladder.Add(new Ladder("Paok", 0, 0, 0, 0, 0, 125));
-            ladder.Add(new Ladder("Manchester UTD", 0, 0, 0, 0, 0, 110));
-            ladder.Add(new Ladder("Real Madrid", 0, 0, 0, 0, 0, 85));
-            ladder.Add(new Ladder("Barcalona", 0, 0, 0, 0, 0, 80));
-            ladder.Add(new Ladder("Socceroos", 0, 0, 0, 0, 0, 70));
-            ladder.Add(new Ladder("Liverpool", 0, 0, 0, 0, 0, 65));
-            ladder.Add(new Ladder("Juventus", 0, 0, 0, 0, 0, 50));
-            ladder.Add(new Ladder("Athletico Madrid", 0, 0, 0, 0, 0, 45));
-            ladder.Add(new Ladder("AC Milan", 0, 0, 0, 0, 0, 35));
-            ladder.Add(new Ladder("Tottenham Spurs", 0, 0, 0, 0, 0, 25));
-            ladder.Add(new Ladder("Olympiacos", 0, 0, 0, 0, 0, 22));
-            ladder.Add(new Ladder("Arsenal", 0, 0, 0, 0, 0, 15));
+            if (cbo_SelectSeason.Text == "" || cbo_SelectDivision.Text == "")
+            {
+                MessageBox.Show("Please Select Season & Division to View Ladder");
+            }
+            else
+            {
+                List<string> teams = DAFunctions.GetDivisionTeams(1);
 
-            dataGridView1.DataSource = ladder;
-            dataGridView1.Columns[4].HeaderText = "Goals For";
-            dataGridView1.Columns[5].HeaderText = "Goals Against";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.AutoResizeColumns();
-            dataGridView1.RowHeadersVisible = false;
+                List<Ladder> ladder = new List<Ladder>();
+                for (int i = 0; i < teams.Count; i++)
+                {
+                    ladder.Add(new Ladder(teams[i], CalcGoalsFor(teams[i]), CalcGoalsAgainst(teams[i]), GamePlayed(teams[i])));
+                }
+
+                lbl_Results.Text = "Ladder";
+                dataGridView1.DataSource = ladder;
+                dataGridView1.Columns[4].HeaderText = "Goals For";
+                dataGridView1.Columns[5].HeaderText = "Goals Against";
+                dataGridView1.ReadOnly = true;
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.RowHeadersVisible = false;
+            }
+
 
         }
 
@@ -90,5 +185,29 @@ namespace EDSL_Prototype
             this.systemGUI.Dispose();
         }
 
+        private void btn_UpdateResults_Click(object sender, EventArgs e)
+        {
+            if (cbo_SelectSeason.Text == "" || cbo_SelectDivision.Text == "")
+            {
+                MessageBox.Show("Please Select Season & Division to Update Round Results");
+            }
+            else
+            {
+                MessageBox.Show("Round " + cbo_SelectRound.Text + " Results Updated");
+            }
+
+        }
+
+        private void btn_UpdateLadder_Click(object sender, EventArgs e)
+        {
+            if (cbo_SelectSeason.Text == "" || cbo_SelectDivision.Text == "")
+            {
+                MessageBox.Show("Please Select Season & Division to Update Ladder");
+            }
+            else
+            {
+                MessageBox.Show($"Season {cbo_SelectSeason.Text} {cbo_SelectDivision.Text} Ladder Updated");
+            }
+        }
     }
 }

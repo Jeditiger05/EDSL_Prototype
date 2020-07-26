@@ -40,7 +40,6 @@ namespace EDSL_Prototype.GUI
             grid_Draw.DataSource = rounds.Select((r, index) =>
             new
             {
-                Index = index,
                 Round = $"Round {r.RoundNo} {r.RoundDate.ToShortDateString()}",
                 Game1 = $"{r.GameList[0].HomeTeam} vs {r.GameList[0].AwayTeam}",
                 Game2 = $"{r.GameList[1].HomeTeam} vs {r.GameList[1].AwayTeam}",
@@ -51,22 +50,21 @@ namespace EDSL_Prototype.GUI
 
             grid_Draw.RowHeadersVisible = false;
 
-            grid_Draw.Columns[1].HeaderText = "Round";
-            grid_Draw.Columns[2].HeaderText = "Game 1";
-            grid_Draw.Columns[3].HeaderText = "Game 2";
-            grid_Draw.Columns[4].HeaderText = "Game 3";
-            grid_Draw.Columns[5].HeaderText = "Game 4";
-            grid_Draw.Columns[6].HeaderText = "Game 5";
+            grid_Draw.Columns[0].HeaderText = "Round";
+            grid_Draw.Columns[1].HeaderText = "Game 1";
+            grid_Draw.Columns[2].HeaderText = "Game 2";
+            grid_Draw.Columns[3].HeaderText = "Game 3";
+            grid_Draw.Columns[4].HeaderText = "Game 4";
+            grid_Draw.Columns[5].HeaderText = "Game 5";
 
-            grid_Draw.Columns[0].Width = 20;
-            grid_Draw.Columns[1].Width = 140;
-            grid_Draw.Columns[2].Width = 140;
-            grid_Draw.Columns[3].Width = 140;
-            grid_Draw.Columns[4].Width = 140;
-            grid_Draw.Columns[5].Width = 140;
-            grid_Draw.Columns[6].Width = 140;
+            grid_Draw.Columns[0].Width = 155;
+            grid_Draw.Columns[1].Width = 170;
+            grid_Draw.Columns[2].Width = 170;
+            grid_Draw.Columns[3].Width = 170;
+            grid_Draw.Columns[4].Width = 170;
+            grid_Draw.Columns[5].Width = 170;
 
-            grid_Draw.AutoResizeColumns();
+           // grid_Draw.AutoResizeColumns();
         }
 
         private void btn_Fixtures_Click(object sender, EventArgs e)

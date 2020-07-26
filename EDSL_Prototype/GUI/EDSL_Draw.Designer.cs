@@ -39,9 +39,9 @@
             // grid_Draw
             // 
             this.grid_Draw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_Draw.Location = new System.Drawing.Point(51, 135);
+            this.grid_Draw.Location = new System.Drawing.Point(47, 135);
             this.grid_Draw.Name = "grid_Draw";
-            this.grid_Draw.Size = new System.Drawing.Size(1002, 439);
+            this.grid_Draw.Size = new System.Drawing.Size(1009, 439);
             this.grid_Draw.TabIndex = 0;
             // 
             // lbl_SeasonAdmin

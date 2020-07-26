@@ -71,8 +71,16 @@ namespace EDSL_Prototype
 
         private void btn_CreateDraw_Click(object sender, EventArgs e)
         {
-            SeasonHandler.CreateDivisionDraw(txt_SeasonName.Text, cbo_Division.Text);
-            MessageBox.Show("Season Draw Created for " + cbo_Division.Text);
+            if (txt_SeasonName.Text == "" || cbo_Division.Text == "")
+            {
+                MessageBox.Show("Please Select Season & Division to Create a Draw");
+            }
+            else
+            {
+                SeasonHandler.CreateDivisionDraw(txt_SeasonName.Text, cbo_Division.Text);
+                MessageBox.Show("Season Draw Created for " + cbo_Division.Text);
+            }
+
         }
 
         private void btn_ViewDraw_Click(object sender, EventArgs e)

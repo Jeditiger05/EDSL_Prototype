@@ -39,18 +39,18 @@
             this.btn_Season = new System.Windows.Forms.Button();
             this.pnlResults = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_UpdateResults = new System.Windows.Forms.Button();
             this.btn_ViewLadder = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btn_UpdateLadder = new System.Windows.Forms.Button();
             this.btn_ViewResults = new System.Windows.Forms.Button();
             this.cbo_SelectRound = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.lbl_Results = new System.Windows.Forms.Label();
-            this.cboSlectDivision = new System.Windows.Forms.ComboBox();
+            this.cbo_SelectDivision = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbo_SelectSeason = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlResults.SuspendLayout();
@@ -165,32 +165,41 @@
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.button1);
+            this.panel8.Controls.Add(this.dataGridView1);
+            this.panel8.Controls.Add(this.btn_UpdateResults);
             this.panel8.Controls.Add(this.btn_ViewLadder);
-            this.panel8.Controls.Add(this.button5);
+            this.panel8.Controls.Add(this.btn_UpdateLadder);
             this.panel8.Controls.Add(this.btn_ViewResults);
             this.panel8.Controls.Add(this.cbo_SelectRound);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Controls.Add(this.lbl_Results);
-            this.panel8.Controls.Add(this.cboSlectDivision);
+            this.panel8.Controls.Add(this.cbo_SelectDivision);
             this.panel8.Controls.Add(this.label13);
-            this.panel8.Controls.Add(this.comboBox2);
+            this.panel8.Controls.Add(this.cbo_SelectSeason);
             this.panel8.Controls.Add(this.label14);
-            this.panel8.Controls.Add(this.dataGridView1);
             this.panel8.Location = new System.Drawing.Point(13, 14);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(869, 439);
             this.panel8.TabIndex = 16;
             // 
-            // button1
+            // dataGridView1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(13, 270);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 30);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Update Results";
-            this.button1.UseVisualStyleBackColor = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(350, 108);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(496, 307);
+            this.dataGridView1.TabIndex = 19;
+            // 
+            // btn_UpdateResults
+            // 
+            this.btn_UpdateResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_UpdateResults.Location = new System.Drawing.Point(13, 270);
+            this.btn_UpdateResults.Name = "btn_UpdateResults";
+            this.btn_UpdateResults.Size = new System.Drawing.Size(134, 30);
+            this.btn_UpdateResults.TabIndex = 9;
+            this.btn_UpdateResults.Text = "Update Results";
+            this.btn_UpdateResults.UseVisualStyleBackColor = true;
+            this.btn_UpdateResults.Click += new System.EventHandler(this.btn_UpdateResults_Click);
             // 
             // btn_ViewLadder
             // 
@@ -203,15 +212,16 @@
             this.btn_ViewLadder.UseVisualStyleBackColor = true;
             this.btn_ViewLadder.Click += new System.EventHandler(this.btn_ViewLadder_Click);
             // 
-            // button5
+            // btn_UpdateLadder
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(13, 324);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(134, 30);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "Update Ladder";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn_UpdateLadder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_UpdateLadder.Location = new System.Drawing.Point(13, 324);
+            this.btn_UpdateLadder.Name = "btn_UpdateLadder";
+            this.btn_UpdateLadder.Size = new System.Drawing.Size(134, 30);
+            this.btn_UpdateLadder.TabIndex = 10;
+            this.btn_UpdateLadder.Text = "Update Ladder";
+            this.btn_UpdateLadder.UseVisualStyleBackColor = true;
+            this.btn_UpdateLadder.Click += new System.EventHandler(this.btn_UpdateLadder_Click);
             // 
             // btn_ViewResults
             // 
@@ -242,6 +252,7 @@
             this.cbo_SelectRound.Name = "cbo_SelectRound";
             this.cbo_SelectRound.Size = new System.Drawing.Size(167, 24);
             this.cbo_SelectRound.TabIndex = 6;
+            this.cbo_SelectRound.Text = "1";
             // 
             // label12
             // 
@@ -263,18 +274,18 @@
             this.lbl_Results.TabIndex = 18;
             this.lbl_Results.Text = "Results";
             // 
-            // cboSlectDivision
+            // cbo_SelectDivision
             // 
-            this.cboSlectDivision.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSlectDivision.FormattingEnabled = true;
-            this.cboSlectDivision.Items.AddRange(new object[] {
+            this.cbo_SelectDivision.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_SelectDivision.FormattingEnabled = true;
+            this.cbo_SelectDivision.Items.AddRange(new object[] {
             "A Division",
             "B Division",
             "C Division"});
-            this.cboSlectDivision.Location = new System.Drawing.Point(138, 167);
-            this.cboSlectDivision.Name = "cboSlectDivision";
-            this.cboSlectDivision.Size = new System.Drawing.Size(167, 24);
-            this.cboSlectDivision.TabIndex = 4;
+            this.cbo_SelectDivision.Location = new System.Drawing.Point(138, 167);
+            this.cbo_SelectDivision.Name = "cbo_SelectDivision";
+            this.cbo_SelectDivision.Size = new System.Drawing.Size(167, 24);
+            this.cbo_SelectDivision.TabIndex = 4;
             // 
             // label13
             // 
@@ -286,18 +297,18 @@
             this.label13.TabIndex = 5;
             this.label13.Text = "Select Division";
             // 
-            // comboBox2
+            // cbo_SelectSeason
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "2017 - 2018",
-            "2018 - 2019",
-            "2019 - 2020"});
-            this.comboBox2.Location = new System.Drawing.Point(138, 108);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(167, 24);
-            this.comboBox2.TabIndex = 2;
+            this.cbo_SelectSeason.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_SelectSeason.FormattingEnabled = true;
+            this.cbo_SelectSeason.Items.AddRange(new object[] {
+            "2017",
+            "2018",
+            "2019"});
+            this.cbo_SelectSeason.Location = new System.Drawing.Point(138, 108);
+            this.cbo_SelectSeason.Name = "cbo_SelectSeason";
+            this.cbo_SelectSeason.Size = new System.Drawing.Size(167, 24);
+            this.cbo_SelectSeason.TabIndex = 2;
             // 
             // label14
             // 
@@ -308,14 +319,6 @@
             this.label14.Size = new System.Drawing.Size(109, 16);
             this.label14.TabIndex = 3;
             this.label14.Text = "Select Season";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(332, 105);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(505, 309);
-            this.dataGridView1.TabIndex = 0;
             // 
             // EDSL_Results
             // 
@@ -353,16 +356,16 @@
         private System.Windows.Forms.Button btn_Season;
         private System.Windows.Forms.Panel pnlResults;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_UpdateResults;
         private System.Windows.Forms.Button btn_ViewLadder;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btn_UpdateLadder;
         private System.Windows.Forms.Button btn_ViewResults;
         private System.Windows.Forms.ComboBox cbo_SelectRound;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lbl_Results;
-        private System.Windows.Forms.ComboBox cboSlectDivision;
+        private System.Windows.Forms.ComboBox cbo_SelectDivision;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbo_SelectSeason;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

@@ -32,7 +32,7 @@ namespace EDSL_Prototype.Handlers
                 rounds.Add( new Round(i + 1, season.SeasonDates[i], 1));
                 for (int j = 0; j < 5; j++)
                 {
-                    rounds[i].GameList.Add(new Game());
+                    rounds[i].GameList.Add(new Game(false));
                 }
             }
 
@@ -61,7 +61,7 @@ namespace EDSL_Prototype.Handlers
                 {
                     if (teams[i] != teams[j])
                     {
-                        fixtures.Add(new Game(gNo, teams[i], teams[j], 0, 0));
+                        fixtures.Add(new Game(gNo, teams[i], teams[j], false));
                     }
                     gNo++;
                 }

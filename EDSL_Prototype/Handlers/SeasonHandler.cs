@@ -93,7 +93,7 @@ namespace EDSL_Prototype.Handlers
 
         }
 
-        public static void SelectDraw(string seasonName)
+        public static int SelectDraw(string seasonName)
         {
             int drawID = 0;
 
@@ -120,6 +120,7 @@ namespace EDSL_Prototype.Handlers
             }
 
             DAFunctions.GetDraw(drawID);
+            return drawID;
         }
     }
 }
