@@ -11,6 +11,7 @@ namespace EDSL_Prototype
     {
         EDSL_Results resultGUI;
         EDSL_SelectDates selectDatesGUI;
+        EDSL_Reports reportsGUI;
         private Season season;
 
         public EDSL_System()
@@ -94,6 +95,13 @@ namespace EDSL_Prototype
         {
             if (!txt_SeasonName.Text.Equals(""))
                 btn_ViewDraw.Enabled = true;
+        }
+
+        private void btn_Reports_Click(object sender, EventArgs e)
+        {
+            this.reportsGUI = new EDSL_Reports(this);
+            this.Hide();
+            reportsGUI.Show();
         }
     }
 }

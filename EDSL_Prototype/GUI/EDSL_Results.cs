@@ -46,7 +46,9 @@ namespace EDSL_Prototype
 
                 GetDraw();
                 rounds[0].GameList[0].HomeGoals = 2;
-                rounds[0].GameList[0].AwayGoals = 2;
+                rounds[0].GameList[0].AwayGoals = 5;
+                rounds[1].GameList[0].HomeGoals = 3;
+                rounds[1].GameList[0].AwayGoals = 1;
 
                 dataGridView1.DataSource = rounds[rNo].GameList.Select((g, index) =>
                 new
@@ -208,6 +210,11 @@ namespace EDSL_Prototype
             {
                 MessageBox.Show($"Season {cbo_SelectSeason.Text} {cbo_SelectDivision.Text} Ladder Updated");
             }
+        }
+
+        private void btn_Reports_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

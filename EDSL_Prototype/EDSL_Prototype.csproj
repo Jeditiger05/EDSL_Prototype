@@ -59,6 +59,12 @@
     <Compile Include="GUI\EDSL_Draw.Designer.cs">
       <DependentUpon>EDSL_Draw.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\EDSL_Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EDSL_Reports.Designer.cs">
+      <DependentUpon>EDSL_Reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\EDSL_Results.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="GUI\EDSL_Draw.resx">
       <DependentUpon>EDSL_Draw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\EDSL_Reports.resx">
+      <DependentUpon>EDSL_Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\EDSL_Results.resx">
       <DependentUpon>EDSL_Results.cs</DependentUpon>

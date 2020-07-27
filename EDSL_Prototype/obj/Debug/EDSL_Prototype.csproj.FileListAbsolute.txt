@@ -30,3 +30,4 @@ D:\GitHub\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.csproj.CopyComp
 D:\GitHub\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.exe
 D:\GitHub\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.pdb
 D:\GitHub\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.csprojAssemblyReference.cache
+D:\GitHub\EDSL_Prototype\EDSL_Prototype\obj\Debug\EDSL_Prototype.GUI.EDSL_Reports.resources

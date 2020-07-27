@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btn_Reports = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.btn_Results = new System.Windows.Forms.Button();
@@ -76,7 +76,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.button10);
+            this.panel3.Controls.Add(this.btn_Reports);
             this.panel3.Controls.Add(this.button9);
             this.panel3.Controls.Add(this.button8);
             this.panel3.Controls.Add(this.btn_Results);
@@ -87,15 +87,16 @@
             this.panel3.Size = new System.Drawing.Size(177, 467);
             this.panel3.TabIndex = 6;
             // 
-            // button10
+            // btn_Reports
             // 
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(14, 125);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(134, 48);
-            this.button10.TabIndex = 12;
-            this.button10.Text = "Reports";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btn_Reports.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Reports.Location = new System.Drawing.Point(14, 125);
+            this.btn_Reports.Name = "btn_Reports";
+            this.btn_Reports.Size = new System.Drawing.Size(134, 48);
+            this.btn_Reports.TabIndex = 12;
+            this.btn_Reports.Text = "Reports";
+            this.btn_Reports.UseVisualStyleBackColor = true;
+            this.btn_Reports.Click += new System.EventHandler(this.btn_Reports_Click);
             // 
             // button9
             // 
@@ -482,7 +483,7 @@
 
         #endregion
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btn_Reports;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button btn_Results;

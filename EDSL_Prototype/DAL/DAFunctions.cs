@@ -72,7 +72,7 @@ namespace EDSL_Prototype.DAL
             teams.Add(new Team("Manchester UTD", "MC123", "Yeggs", 1));
             teams.Add(new Team("Real Madrid", "RM123", "Sanches", 1));
             teams.Add(new Team("Barcalona", "BA123", "Malone", 1));
-            teams.Add(new Team("Olypiacos", "TS123", "Lemonis", 1));
+            teams.Add(new Team("Olympiacos", "TS123", "Lemonis", 1));
             teams.Add(new Team("Liverpool", "LP123", "Savage", 1));
             teams.Add(new Team("Juventus", "JV123", "Eyebrow", 1));
             teams.Add(new Team("Arsenal", "AS123", "Delavega", 1));
